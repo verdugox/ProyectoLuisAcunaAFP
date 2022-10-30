@@ -26,8 +26,9 @@ public class RetreatAFPController {
         return service.findId(id);
     }
 
-    @GetMapping("/ClientForAFP/{AFP}")
-    public List<RetreatAFP> getClientForAFP(@PathVariable("DNI") Integer DNI) throws  Exception{
+    @GetMapping("/searchDNI/{DNI}")
+    public List<RetreatAFP> searchDNI(@PathVariable("DNI") Integer DNI) throws  Exception{
+
         return service.searchDNI(DNI);
     }
 

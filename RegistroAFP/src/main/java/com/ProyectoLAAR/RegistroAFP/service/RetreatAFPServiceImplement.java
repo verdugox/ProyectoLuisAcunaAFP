@@ -45,14 +45,28 @@ public class RetreatAFPServiceImplement implements IRetreatAFPService {
         String url = "http://localhost:8080/laar-afp/ClientForDNI/{DNI}";
         Client[] client= clienteRest.exchange(url, HttpMethod.GET, entity, Client[].class, pathVariables).getBody();
 
-        if(client.length>0){
+        if(client.length>0)
+        {
             if(client[0].getDNI().intValue() == r.getDNI().intValue())
             {
-                if(client[0].getAmountAvailable().intValue() > r.getAmountRetired().intValue()){
-                    return repository.save(r);
+                if(client[0].getAmountAvailable().intValue() > r.getAmountRetired().intValue())
+                {
+                    if(r.getAFP().equals(client[0].getAFP()))
+                    {
+                        if(r.getAmountRetired().intValue() >= client[0].getAmountAvailable().intValue() *  0.5)
+                        {
+                            return repository.save(r);
+                        }
+                        else{
+                            throw new DataIntegrityViolationException("Monto mínimo no cubierto por favor revise el monto mínimo a retirar " + client[0].getAmountAvailable().intValue() *  0.5) ;
+                        }
+                    }
+                    else{
+                        throw new DataIntegrityViolationException("El afp ingresado para el retiro, no es el que tiene vinculado en su solicitud, su afp registrado es: " + client[0].getAFP().toString()) ;
+                    }
                 }
                 else{
-                    throw new DataIntegrityViolationException("No se puede registrar la solicitud. Monto mayor que el permitido") ;
+                    throw new DataIntegrityViolationException("No se puede registrar la solicitud. Monto mayor que el permitido " + client[0].getAmountAvailable().intValue()) ;
                 }
             }
             else{
@@ -88,19 +102,60 @@ public class RetreatAFPServiceImplement implements IRetreatAFPService {
     @Override
     public RetreatAFP update(RetreatAFP r, Integer id) throws Exception {
         Optional<RetreatAFP> optionalClient = repository.findById(id);
-        if(optionalClient.isPresent()){
-            RetreatAFP retreatDB = optionalClient.get();
-            retreatDB.setDNI(r.getDNI());
-            retreatDB.setAmountRetired(r.getAmountRetired());
-            retreatDB.setAFP(r.getAFP());
-            retreatDB.setDateRetired(r.getDateRetired());
-            retreatDB.setNroAccount(r.getNroAccount());
-            log.info("Se registro correctamente la solicitud de retiro de su AFP : " +id);
-            LOGGER.info("Se registro correctamente la solicitud de retiro de su AFP : " +id);
-            return repository.save(retreatDB);
-        }else {
-            log.severe("No se encuentra registrado el cliente {}\"");
-            LOGGER.error("No se encuentra registrado el cliente {}");
+
+        Map<String,Integer> pathVariables = new HashMap<String, Integer>();
+        pathVariables.put("DNI", r.getDNI());
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        HttpEntity<String> entity = new HttpEntity<String>(headers);
+        String url = "http://localhost:8080/laar-afp/ClientForDNI/{DNI}";
+        Client[] client= clienteRest.exchange(url, HttpMethod.GET, entity, Client[].class, pathVariables).getBody();
+
+        if(client.length>0)
+        {
+            if(client[0].getDNI().intValue() == r.getDNI().intValue())
+            {
+                if(client[0].getAmountAvailable().intValue() > r.getAmountRetired().intValue())
+                {
+                    if(r.getAFP().equals(client[0].getAFP()))
+                    {
+                        if(r.getAmountRetired().intValue() >= client[0].getAmountAvailable().intValue() *  0.5)
+                        {
+                            if(optionalClient.isPresent()){
+                                RetreatAFP retreatDB = optionalClient.get();
+                                retreatDB.setDNI(r.getDNI());
+                                retreatDB.setAmountRetired(r.getAmountRetired());
+                                retreatDB.setAFP(r.getAFP());
+                                retreatDB.setDateRetired(r.getDateRetired());
+                                retreatDB.setNroAccount(r.getNroAccount());
+                                log.info("Se registro correctamente la solicitud de retiro de su AFP : " +id);
+                                LOGGER.info("Se registro correctamente la solicitud de retiro de su AFP : " +id);
+                                return repository.save(retreatDB);
+                            }else {
+                                log.severe("No se encuentra registrado el cliente {}\"");
+                                LOGGER.error("No se encuentra registrado el cliente {}");
+                            }
+                        }
+                        else{
+                            throw new DataIntegrityViolationException("Monto mínimo no cubierto por favor revise el monto mínimo a retirar " + client[0].getAmountAvailable().intValue() *  0.5) ;
+                        }
+                    }
+                    else{
+                        throw new DataIntegrityViolationException("El afp ingresado para el retiro, no es el que tiene vinculado en su solicitud, su afp registrado es: " + client[0].getAFP().toString()) ;
+                    }
+                }
+                else{
+                    throw new DataIntegrityViolationException("No se puede registrar la solicitud. Monto mayor que el permitido " + client[0].getAmountAvailable().intValue()) ;
+                }
+            }
+            else{
+                throw new DataIntegrityViolationException("El DNI que ingreso no se encuentra registrado en nuestro AFP") ;
+            }
+        }
+        else
+        {
+            throw new DataIntegrityViolationException("El DNI que ingreso no se encuentra registrado en nuestro AFP") ;
         }
         return new RetreatAFP();
     }
