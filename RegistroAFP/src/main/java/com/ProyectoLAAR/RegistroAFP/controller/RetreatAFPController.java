@@ -2,12 +2,14 @@ package com.ProyectoLAAR.RegistroAFP.controller;
 
 import com.ProyectoLAAR.RegistroAFP.entities.RetreatAFP;
 import com.ProyectoLAAR.RegistroAFP.service.IRetreatAFPService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@Slf4j
 @RequestMapping("/laar-retreatAFP")
 public class RetreatAFPController {
 
@@ -31,6 +33,7 @@ public class RetreatAFPController {
 
     @PostMapping("/create")
     public RetreatAFP create(@RequestBody RetreatAFP retreatAFP)throws Exception{
+
         return service.create(retreatAFP);
     }
 

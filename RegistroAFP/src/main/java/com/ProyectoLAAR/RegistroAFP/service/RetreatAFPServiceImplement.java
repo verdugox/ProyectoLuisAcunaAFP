@@ -1,16 +1,24 @@
 package com.ProyectoLAAR.RegistroAFP.service;
 
+import com.ProyectoLAAR.RegistroAFP.entities.Client;
 import com.ProyectoLAAR.RegistroAFP.entities.RetreatAFP;
 import com.ProyectoLAAR.RegistroAFP.repository.IRetreatAFPRepository;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.extern.java.Log;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.lang.invoke.MethodHandles;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @Log
@@ -22,10 +30,42 @@ public class RetreatAFPServiceImplement implements IRetreatAFPService {
     @Autowired
     private IRetreatAFPRepository repository;
 
+    @Autowired
+    private RestTemplate clienteRest;
+
 
     @Override
     public RetreatAFP create(RetreatAFP r) throws Exception {
-        return repository.save(r);
+        Map<String,Integer> pathVariables = new HashMap<String, Integer>();
+        pathVariables.put("DNI", r.getDNI());
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        HttpEntity<String> entity = new HttpEntity<String>(headers);
+        String url = "http://localhost:8080/laar-afp/ClientForDNI/{DNI}";
+        Client[] client= clienteRest.exchange(url, HttpMethod.GET, entity, Client[].class, pathVariables).getBody();
+
+        if(client.length>0){
+            if(client[0].getDNI().intValue() == r.getDNI().intValue())
+            {
+                if(client[0].getAmountAvailable().intValue() > r.getAmountRetired().intValue()){
+                    return repository.save(r);
+                }
+                else{
+                    throw new DataIntegrityViolationException("No se puede registrar la solicitud. Monto mayor que el permitido") ;
+                }
+            }
+            else{
+                throw new DataIntegrityViolationException("El DNI que ingreso no se encuentra registrado en nuestro AFP") ;
+            }
+        }
+        else
+        {
+            throw new DataIntegrityViolationException("El DNI que ingreso no se encuentra registrado en nuestro AFP") ;
+        }
+
+
+
     }
 
     @Override

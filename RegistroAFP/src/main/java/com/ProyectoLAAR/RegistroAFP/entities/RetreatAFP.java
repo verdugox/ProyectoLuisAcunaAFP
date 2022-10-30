@@ -20,13 +20,13 @@ public class RetreatAFP {
     @Column(name="DNI", nullable = false, length = 8)
     private Integer DNI;
     @Column(nullable = false, length = 50)
-    private Number amountRetired;
+    private Double amountRetired;
     @Column(nullable = false, length = 50)
     private String AFP;
     @Column(nullable = false)
     private Date dateRetired;
     @Column(name="nroAccount", nullable = false)
-    private Integer nroAccount;
+    private Long nroAccount;
 
 
 }
