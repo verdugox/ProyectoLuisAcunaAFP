@@ -1,0 +1,456 @@
+{
+	"info": {
+		"_postman_id": "b90a0edd-00a9-4a08-b60e-5e23148c40a0",
+		"name": "Proyecto BootCamp AFP Luis Acuña",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2809903"
+	},
+	"item": [
+		{
+			"name": "Crear Cliente AFP PRIMA",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"firstName\" : \"Luis Andres\",\r\n        \"lastName\" : \"Acuña Ramos\",\r\n        \"dni\" : \"46285513\",\r\n        \"phone\": 975456789,\r\n        \"email\" : \"luisandres@gmail.com\",\r\n        \"afp\" : \"AFP PRIMA\",\r\n        \"amountAvailable\" : \"5500.50\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/laar-afp/create",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"laar-afp",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Cliente AFP INTEGRA",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"firstName\" : \"Daniel\",\r\n        \"lastName\" : \"Calamaro\",\r\n        \"dni\" : \"40256541\",\r\n        \"phone\": 975456789,\r\n        \"email\" : \"daniel@gmail.com\",\r\n        \"afp\" : \"AFP INTEGRA\",\r\n        \"amountAvailable\" : \"8000\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/laar-afp/create",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"laar-afp",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Cliente AFP PROFUTURO",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"firstName\" : \"Jerson\",\r\n        \"lastName\" : \"Castañeda\",\r\n        \"dni\" : \"40256325\",\r\n        \"phone\": 975423569,\r\n        \"email\" : \"jcastaneda@gmail.com\",\r\n        \"afp\" : \"AFP PROFUTURO\",\r\n        \"amountAvailable\" : \"9000\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/laar-afp/create",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"laar-afp",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Cliente AFP HABITAT",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"firstName\" : \"Rocky\",\r\n        \"lastName\" : \"Balboa\",\r\n        \"dni\" : \"43596740\",\r\n        \"phone\": 975326548,\r\n        \"email\" : \"rocky@gmail.com\",\r\n        \"afp\" : \"AFP HABITAT\",\r\n        \"amountAvailable\" : \"7500\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/laar-afp/create",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"laar-afp",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Cliente por ID",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n    {\r\n        \"firstName\" : \"Luis\",\r\n        \"lastName\" : \"Acuña\",\r\n        \"dni\" : \"46285544\",\r\n        \"phone\": 975456789,\r\n        \"email\" : \"lacunara@gmail.com\",\r\n        \"afp\" : \"AFP PRIMA\",\r\n        \"amountAvailable\" : \"7500\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/laar-afp/update/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"laar-afp",
+						"update",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Cliente",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"firstName\" : \"Luis Andres\",\r\n        \"lastName\" : \"Acuña Ramos\",\r\n        \"dni\" : \"46285513\",\r\n        \"phone\": 975456789,\r\n        \"email\" : \"luisandres@gmail.com\",\r\n        \"afp\" : \"AFP Prima\"\r\n    },\r\n    {\r\n        \"firstName\" : \"Pedro\",\r\n        \"lastName\" : \"Quispe\",\r\n        \"dni\" : \"45678767\",\r\n        \"phone\": 943456765,\r\n        \"email\" : \"pedrogallese@gmail.com\",\r\n        \"afp\" : \"Profuturo\"\r\n    },\r\n    {\r\n        \"firstName\" : \"Victor\",\r\n        \"lastName\" : \"Gordillo\",\r\n        \"dni\" : \"43657687\",\r\n        \"phone\": 912345678,\r\n        \"email\" : \"victorgordillo@gmail.com\",\r\n        \"afp\" : \"AFP Integra\"\r\n    }\r\n\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/laar-afp/findAll",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"laar-afp",
+						"findAll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Cliente por ID",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"firstName\" : \"Luis Andres\",\r\n        \"lastName\" : \"Acuña Ramos\",\r\n        \"dni\" : \"46285513\",\r\n        \"phone\": 975456789,\r\n        \"email\" : \"luisandres@gmail.com\",\r\n        \"afp\" : \"AFP Prima\"\r\n    },\r\n    {\r\n        \"firstName\" : \"Pedro\",\r\n        \"lastName\" : \"Quispe\",\r\n        \"dni\" : \"45678767\",\r\n        \"phone\": 943456765,\r\n        \"email\" : \"pedrogallese@gmail.com\",\r\n        \"afp\" : \"Profuturo\"\r\n    },\r\n    {\r\n        \"firstName\" : \"Victor\",\r\n        \"lastName\" : \"Gordillo\",\r\n        \"dni\" : \"43657687\",\r\n        \"phone\": 912345678,\r\n        \"email\" : \"victorgordillo@gmail.com\",\r\n        \"afp\" : \"AFP Integra\"\r\n    }\r\n\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/laar-afp/findId/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"laar-afp",
+						"findId",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Cliente por AFP",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"firstName\" : \"Luis Andres\",\r\n        \"lastName\" : \"Acuña Ramos\",\r\n        \"dni\" : \"46285513\",\r\n        \"phone\": 975456789,\r\n        \"email\" : \"luisandres@gmail.com\",\r\n        \"afp\" : \"AFP Prima\"\r\n    },\r\n    {\r\n        \"firstName\" : \"Pedro\",\r\n        \"lastName\" : \"Quispe\",\r\n        \"dni\" : \"45678767\",\r\n        \"phone\": 943456765,\r\n        \"email\" : \"pedrogallese@gmail.com\",\r\n        \"afp\" : \"Profuturo\"\r\n    },\r\n    {\r\n        \"firstName\" : \"Victor\",\r\n        \"lastName\" : \"Gordillo\",\r\n        \"dni\" : \"43657687\",\r\n        \"phone\": 912345678,\r\n        \"email\" : \"victorgordillo@gmail.com\",\r\n        \"afp\" : \"AFP Integra\"\r\n    }\r\n\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/laar-afp/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"laar-afp",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Cliente por DNI",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/laar-afp/ClientForDNI/46285513",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"laar-afp",
+						"ClientForDNI",
+						"46285513"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar Cliente por ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/laar-afp/delete/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"laar-afp",
+						"delete",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Solicitud Retiro AFP",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"dni\" : 46285513,\r\n        \"amountRetired\" : 2800.00,\r\n        \"afp\" : \"AFP PRIMA\",\r\n        \"dateRetired\": \"2022-10-29\",\r\n        \"nroAccount\" : 548523654124\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8083/laar-retreatAFP/create",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"laar-retreatAFP",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Solicitud Retiro AFP",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"dni\" : 46285513,\r\n        \"amountRetired\" : 3000.00,\r\n        \"afp\" : \"AFP Prima\",\r\n        \"dateRetired\": \"2022-10-29\",\r\n        \"nroAccount\" : 548523654124\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8083/laar-retreatAFP/update/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"laar-retreatAFP",
+						"update",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Solicitud Retiro AFP",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8083/laar-retreatAFP/findAll/",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"laar-retreatAFP",
+						"findAll",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Solicitud Retiro AFP por DNI",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8083/laar-retreatAFP/searchDNI/46285513",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"laar-retreatAFP",
+						"searchDNI",
+						"46285513"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar Solicitud Retiro AFP",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8083/laar-retreatAFP/delete/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"laar-retreatAFP",
+						"delete",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
