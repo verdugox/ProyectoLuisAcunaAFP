@@ -1,0 +1,2 @@
+URL OPENAPI V3 => http://localhost:8083/api-retiroafp-docs
+URL SWAGGER - UI => http://localhost:8083/swagger-ui/index.html#/retreat-afp-controller/update
