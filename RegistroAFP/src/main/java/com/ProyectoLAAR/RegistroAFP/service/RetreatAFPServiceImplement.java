@@ -54,7 +54,7 @@ public class RetreatAFPServiceImplement implements IRetreatAFPService {
                     {
                         if(r.getAmountRetired().intValue() >= client[0].getAmountAvailable().intValue() *  0.5)
                         {
-                            log.error("Se realizo el registro correcto del retiro para el AFP del cliente que tiene por DNI:  " + client[0].getDNI().intValue());
+                            log.info("Se realizo el registro correcto del retiro para el AFP del cliente que tiene por DNI:  " + client[0].getDNI().intValue());
                             return repository.save(r);
                         }
                         else{
